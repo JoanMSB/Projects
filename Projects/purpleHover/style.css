@@ -1,0 +1,110 @@
+* {
+    font-size: 25px;
+    background:   rgb(71, 36, 110);
+    color: #1f1;
+    border-radius: 0px;
+    text-decoration: none;
+}
+
+:root {
+    --hover: rgb(49, 20, 83);
+    ;
+}
+  
+.first {
+    color: #00f;
+    width: 100%;
+    height: 100px;
+    background: rgb(59, 26, 97);
+    border-color: #000 5px;
+    padding: 10px 50px;
+}
+
+.second {
+    color: #00f;
+    width: 100%;
+    height: 100px;
+    background: rgb(59, 26, 97);
+    border-color: #000 5px;
+    padding: 10px 50px;
+}
+
+.third {
+    color: #00f;
+    width: 100%;
+    height: 100px;
+    background: rgb(59, 26, 97);
+    border-color: rgb(20, 15, 15) 5px;
+    padding: 10px 50px;
+}
+
+.fourth {
+    color: #00f;
+    width: 100%;
+    height: 100px;
+    background: rgb(59, 26, 97);;
+    border-color: rgb(20, 15, 15) 5px;
+    padding: 10px 50px;
+}
+
+.fiveth {
+    color: #00f;
+    width: 100%;
+    height: 100px;
+    background: rgb(59, 26, 97);
+    border-color: rgb(20, 15, 15) 5px;
+    padding: 10px 50px;
+}
+
+.container {
+    margin-top: 20px;
+    background: rgb(71, 36, 110);
+
+}
+
+div div:hover {
+    background-color: var(--hover);
+}
+
+.nav {
+    display: flex;
+    font-size: 10px;
+    justify-content: space-evenly;
+}
+
+.nav div {
+    background: rgb(59, 26, 97);
+
+}
+
+.nav a:hover {
+   background-color: var(--hover);
+}
+
+.home {
+    width: 120px;
+    height: 50px;
+    background: rgb(59, 26, 97);
+    text-align: center;
+}
+
+.resource {
+    width: 120px;;
+    height: 50px;
+    background: rgb(59, 26, 97);
+    text-align: center;
+}
+
+.extra {
+    width:120px;
+    height: 50px;
+    background: rgb(59, 26, 97);
+    text-align: center;
+}
+
+.search {
+    display: flex;
+    justify-content: center;
+}
+
+

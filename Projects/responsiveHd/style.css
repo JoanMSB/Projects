@@ -1,0 +1,46 @@
+body{
+    font-family: sans-serif;
+    margin: 0;
+
+}
+
+a{
+    text-decoration: none;
+    color:deepskyblue
+}
+header{
+    display: flex;
+    min-height: 95px;
+    background-color:darkslateblue;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+}
+
+nav a{
+    font-weight: 600;
+    padding-right: 10px;
+
+}
+nav a:hover{
+    color:darkblue
+}
+@media(max-width:700px){
+    header{
+        flex-direction: column;
+    }
+    nav{
+        padding: 10px 0px;
+    }
+    
+}
+/*.logoimg{
+    padding-top: 30px;
+    padding-left: 40px;
+}
