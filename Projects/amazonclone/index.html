@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Amazon Clone</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <img src="https://logos-world.net/wp-content/uploads/2020/04/Amazon-Symbol.jpg" alt="Amazon Logo">
+    <div class="search-bar">
+      <input type="text" placeholder="Search Amazon...">
+      <button>Search</button>
+    </div>
+    <div class="nav-links">
+      <a href="#">Returns & Orders</a>
+      <a href="#" id="cart-icon">Cart (<span id="cart-count">0</span>)</a>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Welcome to Amazon</h1>
+      <p>Shop millions of products from books to electronics.</p>
+      <a href="#" class="hero-button">Shop Now</a>
+    </div>
+  </div>
+
+  <div class="gallery">
+    <h2>Popular Categories</h2>
+    <div class="products">
+      <div class="product-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXZI-ZiriViEw_cNPWJutWM1lAS50j3Z3ijg&s" alt="Books">
+        <h3>Books</h3>
+        <p class="product-price">$15.99</p>
+        <button class="add-to-cart-btn" data-product-id="book-001" data-product-name="Books" data-product-price="15.99">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_0gqdl_e2gVubvQ7o0NIopOCenDLYlgLhIA&s" alt="Electronics">
+        <h3>Electronics</h3>
+        <p class="product-price">$120.00</p>
+        <button class="add-to-cart-btn" data-product-id="elec-001" data-product-name="Electronics" data-product-price="120.00">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM8ZiXyYuVTnYeEQee_igj_HLvDiSFQf_nVQ&s" alt="Home & Kitchen">
+        <h3>Home & Kitchen</h3>
+        <p class="product-price">$45.50</p>
+        <button class="add-to-cart-btn" data-product-id="home-001" data-product-name="Home & Kitchen" data-product-price="45.50">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS937JFXLb1JV4PCaE7Z_K8ry8kTc8JbDzTwQ&s" alt="Fashion">
+        <h3>Fashion</h3>
+        <p class="product-price">$30.25</p>
+        <button class="add-to-cart-btn" data-product-id="fash-001" data-product-name="Fashion" data-product-price="30.25">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvCo68uwm2yBoJcoelAwmUkiXDHbDhYrDPMg&s" alt="Health & Personal Care">
+        <h3>Health & Personal Care</h3>
+        <p class="product-price">$22.75</p>
+        <button class="add-to-cart-btn" data-product-id="health-001" data-product-name="Health & Personal Care" data-product-price="22.75">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="https://dailysale.com/cdn/shop/collections/toys-games-879935.jpg?v=1737087607" alt="Toys & Games">
+        <h3>Toys & Games</h3>
+        <p class="product-price">$18.99</p>
+        <button class="add-to-cart-btn" data-product-id="toys-001" data-product-name="Toys & Games" data-product-price="18.99">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="https://media.istockphoto.com/id/1248454290/photo/accessories-for-cat-and-dog-on-blue-background-pet-care-and-training-concept-flat-lay-top-view.jpg?s=612x612&w=0&k=20&c=rA18Zf1SiyFh9yrFpe0M5HeaoAK5KG_X2vvnUAHSa1s=" alt="Pet Supplies">
+        <h3>Pet Supplies</h3>
+        <p class="product-price">$10.00</p>
+        <button class="add-to-cart-btn" data-product-id="pet-001" data-product-name="Pet Supplies" data-product-price="10.00">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLEdSqo04Pdpe3wDq_SJ-WbffArn2ocWrOjaFfgqW4MBm8OP7XJzljNtG8gFiz0h6CyDI&usqp=CAU" alt="Beauty">
+        <h3>Beauty</h3>
+        <p class="product-price">$7.50</p>
+        <button class="add-to-cart-btn" data-product-id="beauty-001" data-product-name="Beauty" data-product-price="7.50">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="shopping-cart-section">
+    <h2>Your Shopping Cart</h2>
+    <div id="cart-items">
+      <p>Your cart is empty.</p>
+    </div>
+    <div class="cart-total">
+      <h3>Total: $<span id="cart-total-price">0.00</span></h3>
+      <button id="checkout-btn">Proceed to Checkout</button>
+    </div>
+  </div>
+
+  <footer>
+    Amazon Clone made with HTML and CSS &copy; 2025
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
