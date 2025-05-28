@@ -1,0 +1,107 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #141414;
+    color: white;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #111;
+}
+
+header img {
+    width: 120px;
+}
+
+.search-bar input {
+    padding: 8px;
+    width: 200px;
+    border: none;
+    border-radius: 4px;
+}
+
+.hero {
+    background: url('https://assets.nflxext.com/ffe/siteui/vlv3/017e9c1f-4b18-4f3a-b8d7-9bff20b6d12d/3f3f3dc1-fb3b-4866-a1bc-1dbf221d24f0/DO-es-20240506-popsignuptwoweeks-perspective_alpha_website_large.jpg') no-repeat center center/cover;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-content h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.hero-content p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.gallery {
+    padding: 30px 20px;
+}
+
+.gallery h2 {
+    margin-bottom: 15px;
+}
+
+.movies {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.movie {
+    background-color: #222;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    height: 225px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.movie:hover {
+    transform: scale(1.05);
+}
+
+.movie img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+footer {
+    background-color: #111;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    font-size: 0.9em;
+    color: #aaa;
+}
