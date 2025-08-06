@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Tipos de Sangre</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .parents-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .parent-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .parent-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .parent-card h3 {
+            color: #495057;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            text-align: center;
+        }
+
+        .blood-select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            font-size: 1.1em;
+            background: white;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        .blood-select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .calculate-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .results {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid #e9ecef;
+            display: none;
+        }
+
+        .results.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .results h3 {
+            color: #495057;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            text-align: center;
+        }
+
+        .probability-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .probability-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .probability-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .blood-type {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #ff6b6b;
+            margin-bottom: 10px;
+        }
+
+        .percentage {
+            font-size: 1.3em;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.8s ease;
+        }
+
+        .info-section {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            border-left: 4px solid #2196f3;
+        }
+
+        .info-section h4 {
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+
+        .info-section p {
+            color: #424242;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .parents-section {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🩸 Calculadora de Tipos de Sangre</h1>
+            <p>Descubre las probabilidades genéticas de los tipos sanguíneos de tu descendencia</p>
+        </div>
+
+        <div class="content">
+            <div class="parents-section">
+                <div class="parent-card">
+                    <h3>👨 Padre</h3>
+                    <select class="blood-select" id="father-blood">
+                        <option value="">Selecciona tipo de sangre</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                    </select>
+                </div>
+
+                <div class="parent-card">
+                    <h3>👩 Madre</h3>
+                    <select class="blood-select" id="mother-blood">
+                        <option value="">Selecciona tipo de sangre</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="calculate-btn" onclick="calculateProbabilities()">
+                🧬 Calcular Probabilidades
+            </button>
+
+            <div class="results" id="results">
+                <h3>Probabilidades de Tipos de Sangre del Hijo/a</h3>
+                <div class="probability-grid" id="probability-grid">
+                    <!-- Los resultados se mostrarán aquí -->
+                </div>
+            </div>
+
+            <div class="info-section">
+                <h4>ℹ️ Información sobre la Herencia de Tipos de Sangre</h4>
+                <p>Los tipos de sangre se heredan según las leyes de Mendel. Cada padre contribuye con un alelo para el grupo <strong>ABO</strong> y otro para el factor Rh. Los alelos <strong>A</strong> y <strong>B</strong> son codominantes, mientras que <strong>O</strong> es recesivo. El factor <strong>Rh</strong> positivo es dominante sobre el negativo.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Función para obtener todos los genotipos posibles de un tipo de sangre
+        function getGenotypes(bloodType) {
+            const genotypes = [];
+            
+            switch(bloodType) {
+                case 'A+':
+                    genotypes.push(['A', 'A', '+'], ['A', 'O', '+'], ['A', 'A', '+-'], ['A', 'O', '+-']);
+                    break;
+                case 'A-':
+                    genotypes.push(['A', 'A', '-'], ['A', 'O', '-']);
+                    break;
+                case 'B+':
+                    genotypes.push(['B', 'B', '+'], ['B', 'O', '+'], ['B', 'B', '+-'], ['B', 'O', '+-']);
+                    break;
+                case 'B-':
+                    genotypes.push(['B', 'B', '-'], ['B', 'O', '-']);
+                    break;
+                case 'AB+':
+                    genotypes.push(['A', 'B', '+'], ['A', 'B', '+-']);
+                    break;
+                case 'AB-':
+                    genotypes.push(['A', 'B', '-']);
+                    break;
+                case 'O+':
+                    genotypes.push(['O', 'O', '+'], ['O', 'O', '+-']);
+                    break;
+                case 'O-':
+                    genotypes.push(['O', 'O', '-']);
+                    break;
+            }
+            
+            return genotypes;
+        }
+
+        // Función para determinar el fenotipo basado en genotipos
+        function getPhenotype(abo1, abo2, rh) {
+            let bloodType = '';
+            
+            // Determinar tipo ABO
+            if ((abo1 === 'A' && abo2 === 'A') || (abo1 === 'A' && abo2 === 'O') || (abo1 === 'O' && abo2 === 'A')) {
+                bloodType = 'A';
+            } else if ((abo1 === 'B' && abo2 === 'B') || (abo1 === 'B' && abo2 === 'O') || (abo1 === 'O' && abo2 === 'B')) {
+                bloodType = 'B';
+            } else if ((abo1 === 'A' && abo2 === 'B') || (abo1 === 'B' && abo2 === 'A')) {
+                bloodType = 'AB';
+            } else if (abo1 === 'O' && abo2 === 'O') {
+                bloodType = 'O';
+            }
+            
+            // Determinar factor Rh
+            if (rh.includes('+')) {
+                bloodType += '+';
+            } else {
+                bloodType += '-';
+            }
+            
+            return bloodType;
+        }
+
+        function calculateProbabilities() {
+            const fatherBlood = document.getElementById('father-blood').value;
+            const motherBlood = document.getElementById('mother-blood').value;
+            
+            if (!fatherBlood || !motherBlood) {
+                alert('Por favor selecciona el tipo de sangre de ambos padres');
+                return;
+            }
+            
+            const fatherGenotypes = getGenotypes(fatherBlood);
+            const motherGenotypes = getGenotypes(motherBlood);
+            
+            const outcomes = {};
+            let totalCombinations = 0;
+            
+            // Calcular todas las combinaciones posibles
+            fatherGenotypes.forEach(fatherGeno => {
+                motherGenotypes.forEach(motherGeno => {
+                    // Simular meiosis - cada padre contribuye con un alelo de cada gen
+                    const fatherGametes = [
+                        [fatherGeno[0], fatherGeno[2].charAt(0)],
+                        [fatherGeno[1], fatherGeno[2].charAt(0)]
+                    ];
+                    
+                    if (fatherGeno[2].length > 1) {
+                        fatherGametes.push(
+                            [fatherGeno[0], fatherGeno[2].charAt(1)],
+                            [fatherGeno[1], fatherGeno[2].charAt(1)]
+                        );
+                    }
+                    
+                    const motherGametes = [
+                        [motherGeno[0], motherGeno[2].charAt(0)],
+                        [motherGeno[1], motherGeno[2].charAt(0)]
+                    ];
+                    
+                    if (motherGeno[2].length > 1) {
+                        motherGametes.push(
+                            [motherGeno[0], motherGeno[2].charAt(1)],
+                            [motherGeno[1], motherGeno[2].charAt(1)]
+                        );
+                    }
+                    
+                    // Combinar gametos
+                    fatherGametes.forEach(fGamete => {
+                        motherGametes.forEach(mGamete => {
+                            const childRh = (fGamete[1] === '+' || mGamete[1] === '+') ? '+' : '-';
+                            const phenotype = getPhenotype(fGamete[0], mGamete[0], childRh);
+                            
+                            outcomes[phenotype] = (outcomes[phenotype] || 0) + 1;
+                            totalCombinations++;
+                        });
+                    });
+                });
+            });
+            
+            // Normalizar probabilidades
+            const probabilities = {};
+            Object.keys(outcomes).forEach(type => {
+                probabilities[type] = (outcomes[type] / totalCombinations * 100).toFixed(1);
+            });
+            
+            displayResults(probabilities);
+        }
+
+        function displayResults(probabilities) {
+            const resultsDiv = document.getElementById('results');
+            const gridDiv = document.getElementById('probability-grid');
+            
+            // Limpiar resultados anteriores
+            gridDiv.innerHTML = '';
+            
+            // Crear array de tipos de sangre con probabilidades y ordenar de mayor a menor
+            const allBloodTypes = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
+            const bloodTypesWithProb = allBloodTypes.map(bloodType => ({
+                type: bloodType,
+                probability: probabilities[bloodType] || 0
+            }));
+            
+            // Ordenar de mayor a menor probabilidad
+            bloodTypesWithProb.sort((a, b) => b.probability - a.probability);
+            
+            // Crear tarjetas ordenadas
+            bloodTypesWithProb.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'probability-card';
+                
+                card.innerHTML = `
+                    <div class="blood-type">${item.type}</div>
+                    <div class="percentage">${item.probability}%</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${item.probability}%"></div>
+                    </div>
+                `;
+                
+                gridDiv.appendChild(card);
+            });
+            
+            // Mostrar resultados con animación
+            resultsDiv.classList.add('show');
+            resultsDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
